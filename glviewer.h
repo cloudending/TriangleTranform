@@ -2,17 +2,19 @@
 #define GLVIEWER_H
 
 #include <QGLWidget>
-
+#include <iostream>
 class GLViewer : public QGLWidget
 {
 	Q_OBJECT
 
 public:
-	GLViewer(QWidget *parent);
+	//GLViewer(QWidget *parent);
 	~GLViewer();
 	static GLViewer* getInstance();
 private:
-	static GLViewer* m_instance;
+
+	static GLViewer* m_Instance;
+	GLViewer(QWidget *parent = 0);
 
 	class CGarbo
 	{
@@ -25,7 +27,7 @@ private:
 			}
 		}
 	};
-
+	static CGarbo garbo;
 protected:
 	void initializeGL();
 	void paintGL();
