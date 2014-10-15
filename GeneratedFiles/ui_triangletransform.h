@@ -25,6 +25,7 @@ QT_BEGIN_NAMESPACE
 class Ui_TriangleTransformClass
 {
 public:
+    QAction *actionOpenImage;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *mainLayout;
@@ -36,6 +37,8 @@ public:
         if (TriangleTransformClass->objectName().isEmpty())
             TriangleTransformClass->setObjectName(QStringLiteral("TriangleTransformClass"));
         TriangleTransformClass->resize(1304, 725);
+        actionOpenImage = new QAction(TriangleTransformClass);
+        actionOpenImage->setObjectName(QStringLiteral("actionOpenImage"));
         centralWidget = new QWidget(TriangleTransformClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout_2 = new QHBoxLayout(centralWidget);
@@ -57,6 +60,8 @@ public:
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         TriangleTransformClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
+        mainToolBar->addAction(actionOpenImage);
+
         retranslateUi(TriangleTransformClass);
 
         QMetaObject::connectSlotsByName(TriangleTransformClass);
@@ -65,6 +70,7 @@ public:
     void retranslateUi(QMainWindow *TriangleTransformClass)
     {
         TriangleTransformClass->setWindowTitle(QApplication::translate("TriangleTransformClass", "TriangleTransform", 0));
+        actionOpenImage->setText(QApplication::translate("TriangleTransformClass", "openImage", 0));
     } // retranslateUi
 
 };

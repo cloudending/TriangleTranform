@@ -1,31 +1,39 @@
-﻿生成启动时间为 10/14/2014 5:00:34 PM。
+﻿生成启动时间为 10/15/2014 8:31:56 PM。
      1>项目“d:\documents\visual studio 2010\Projects\TriangleTransform\TriangleTransform\TriangleTransform.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在对“x64\Debug\TriangleTransform.unsuccessfulbuild”执行 Touch 任务。
        CustomBuild:
          所有输出均为最新。
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include" /I.\GeneratedFiles\Debug /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtCore" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtGui" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtOpenGL" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtWidgets" /I"D:\DEVELOPER\glew-1.11.0\include" /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /Gd /TP /errorReport:prompt glviewer.cpp
-         glviewer.cpp
-         所有输出均为最新。
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include" /I.\GeneratedFiles\Debug /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtCore" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtGui" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtOpenGL" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtWidgets" /I"D:\DEVELOPER\glew-1.11.0\include" /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\qrc_triangletransform.cpp
-         qrc_triangletransform.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"d:\documents\visual studio 2010\Projects\TriangleTransform\x64\Debug\\TriangleTransform.exe" /NOLOGO /LIBPATH:"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\lib" qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5OpenGLd.lib opengl32.lib glu32.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Debug\TriangleTransform.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"d:\documents\visual studio 2010\Projects\TriangleTransform\x64\Debug\TriangleTransform.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"d:\documents\visual studio 2010\Projects\TriangleTransform\x64\Debug\TriangleTransform.lib" /MACHINE:X64 x64\Debug\moc_glviewer.obj
-         x64\Debug\moc_triangletransform.obj
-         x64\Debug\qrc_triangletransform.obj
-         x64\Debug\glviewer.obj
-         x64\Debug\main.obj
-         x64\Debug\triangletransform.obj
-         LINK : 没有找到 d:\documents\visual studio 2010\Projects\TriangleTransform\x64\Debug\\TriangleTransform.exe 或上一个增量链接没有生成它；正在执行完全链接
-         TriangleTransform.vcxproj -> d:\documents\visual studio 2010\Projects\TriangleTransform\x64\Debug\TriangleTransform.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"d:\documents\visual studio 2010\Projects\TriangleTransform\x64\Debug\\TriangleTransform.exe;#1" /manifest x64\Debug\TriangleTransform.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         正在删除文件“x64\Debug\TriangleTransform.unsuccessfulbuild”。
-         正在对“x64\Debug\TriangleTransform.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“d:\documents\visual studio 2010\Projects\TriangleTransform\TriangleTransform\TriangleTransform.vcxproj”(build 个目标)的操作。
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include" /I.\GeneratedFiles\Debug /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtCore" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtGui" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtOpenGL" /I"D:\DEVELOPER\Qt\qt-5.1.0-x64-msvc2010-opengl\qt-5.1.0-x64-msvc2010-opengl\include\QtWidgets" /I"D:\DEVELOPER\glew-1.11.0\include" /ID:\DEVELOPER\WmlMath\include\ /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /Gd /TP /errorReport:prompt ImageTransform.cpp
+         ImageTransform.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\algorithm(3720): error C2064: 项不会计算为接受 2 个参数的函数
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\algorithm(3776): 参见对正在编译的函数 模板 实例化“std::pair<_Ty1,_Ty2> std::_Unguarded_partition<_RanIt,_Pr>(_RanIt,_RanIt,_Pr)”的引用
+                 with
+                 [
+                     _Ty1=Wml::Vector2<float> *,
+                     _Ty2=Wml::Vector2<float> *,
+                     _RanIt=Wml::Vector2<float> *,
+                     _Pr=bool (__cdecl ImageTransform::* )(const Wml::Vector2f &,const Wml::Vector2f &)
+                 ]
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\algorithm(3806): 参见对正在编译的函数 模板 实例化“void std::_Sort<Wml::Vector2<Real>*,__int64,_Pr>(_RanIt,_RanIt,_Diff,_Pr)”的引用
+                 with
+                 [
+                     Real=float,
+                     _Pr=bool (__cdecl ImageTransform::* )(const Wml::Vector2f &,const Wml::Vector2f &),
+                     _RanIt=Wml::Vector2<float> *,
+                     _Diff=__int64
+                 ]
+                 ImageTransform.cpp(27): 参见对正在编译的函数 模板 实例化“void std::sort<std::_Vector_iterator<_Myvec>,bool(__cdecl ImageTransform::* )(const Wml::Vector2f &,const Wml::Vector2f &)>(_RanIt,_RanIt,_Pr)”的引用
+                 with
+                 [
+                     _Myvec=std::_Vector_val<Wml::Vector2f,std::allocator<Wml::Vector2f>>,
+                     _RanIt=std::_Vector_iterator<std::_Vector_val<Wml::Vector2f,std::allocator<Wml::Vector2f>>>,
+                     _Pr=bool (__cdecl ImageTransform::* )(const Wml::Vector2f &,const Wml::Vector2f &)
+                 ]
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\algorithm(3720): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
+     1>已完成生成项目“d:\documents\visual studio 2010\Projects\TriangleTransform\TriangleTransform\TriangleTransform.vcxproj”(build 个目标)的操作 - 失败。
 
-生成成功。
+生成失败。
 
-已用时间 00:00:01.47
+已用时间 00:00:00.61

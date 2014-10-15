@@ -7,6 +7,7 @@ GLViewer::GLViewer(QWidget *parent)
 {
 	setFocusPolicy(Qt::StrongFocus);
 	setMouseTracking(true);
+	
 }
 
 GLViewer::~GLViewer()
@@ -48,6 +49,7 @@ void GLViewer::resizeGL( int w, int h )
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
+
 }
 
 GLViewer* GLViewer::getInstance()
@@ -57,4 +59,9 @@ GLViewer* GLViewer::getInstance()
 		m_Instance = new GLViewer();
 	}
 	return m_Instance;
+}
+
+void GLViewer::loadImage( QString filePath )
+{
+	
 }

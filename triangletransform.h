@@ -11,7 +11,8 @@ class TriangleTransform : public QMainWindow
 public:
 	TriangleTransform(QWidget *parent = 0);
 	~TriangleTransform();
-
+private slots:
+		void onActionOpenImage();
 private:
 	Ui::TriangleTransformClass ui;
 };

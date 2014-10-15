@@ -3,6 +3,7 @@
 
 #include <QGLWidget>
 #include <iostream>
+#include <QString>
 class GLViewer : public QGLWidget
 {
 	Q_OBJECT
@@ -11,6 +12,7 @@ public:
 	//GLViewer(QWidget *parent);
 	~GLViewer();
 	static GLViewer* getInstance();
+	void loadImage(QString filePath);
 private:
 
 	static GLViewer* m_Instance;

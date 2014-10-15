@@ -59,6 +59,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_glviewer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="loadlibs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="triangletransform.h">
@@ -77,6 +86,12 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_triangletransform.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="drawmanager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageTransform.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -37,7 +37,13 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpenImage"/>
   </widget>
+  <action name="actionOpenImage">
+   <property name="text">
+    <string>openImage</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
