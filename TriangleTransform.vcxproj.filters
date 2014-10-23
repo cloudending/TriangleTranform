@@ -68,6 +68,15 @@
     <ClCompile Include="ImageTransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="paintarea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_paintarea.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_paintarea.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="triangletransform.h">
@@ -80,6 +89,9 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="glviewer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="paintarea.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

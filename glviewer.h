@@ -4,6 +4,7 @@
 #include <QGLWidget>
 #include <iostream>
 #include <QString>
+
 class GLViewer : public QGLWidget
 {
 	Q_OBJECT
@@ -30,6 +31,8 @@ private:
 		}
 	};
 	static CGarbo garbo;
+	
+	GLuint* texName;
 protected:
 	void initializeGL();
 	void paintGL();

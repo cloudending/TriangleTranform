@@ -3,7 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_triangletransform.h"
-
+#include "paintarea.h"
 class TriangleTransform : public QMainWindow
 {
 	Q_OBJECT
@@ -13,8 +13,11 @@ public:
 	~TriangleTransform();
 private slots:
 		void onActionOpenImage();
+		void onActionTransform();
 private:
 	Ui::TriangleTransformClass ui;
+	PaintArea* srcImgArea;
+	PaintArea* dstImgArea;
 };
 
 #endif // TRIANGLETRANSFORM_H

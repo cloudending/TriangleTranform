@@ -26,9 +26,9 @@ class Ui_TriangleTransformClass
 {
 public:
     QAction *actionOpenImage;
+    QAction *actionTransform;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout_2;
-    QHBoxLayout *mainLayout;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
 
@@ -39,18 +39,14 @@ public:
         TriangleTransformClass->resize(1304, 725);
         actionOpenImage = new QAction(TriangleTransformClass);
         actionOpenImage->setObjectName(QStringLiteral("actionOpenImage"));
+        actionTransform = new QAction(TriangleTransformClass);
+        actionTransform->setObjectName(QStringLiteral("actionTransform"));
         centralWidget = new QWidget(TriangleTransformClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout_2 = new QHBoxLayout(centralWidget);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        mainLayout = new QHBoxLayout();
-        mainLayout->setSpacing(6);
-        mainLayout->setObjectName(QStringLiteral("mainLayout"));
-
-        horizontalLayout_2->addLayout(mainLayout);
-
         TriangleTransformClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(TriangleTransformClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -61,6 +57,7 @@ public:
         TriangleTransformClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
         mainToolBar->addAction(actionOpenImage);
+        mainToolBar->addAction(actionTransform);
 
         retranslateUi(TriangleTransformClass);
 
@@ -71,6 +68,7 @@ public:
     {
         TriangleTransformClass->setWindowTitle(QApplication::translate("TriangleTransformClass", "TriangleTransform", 0));
         actionOpenImage->setText(QApplication::translate("TriangleTransformClass", "openImage", 0));
+        actionTransform->setText(QApplication::translate("TriangleTransformClass", "transform", 0));
     } // retranslateUi
 
 };

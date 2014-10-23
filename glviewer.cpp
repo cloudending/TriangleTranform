@@ -12,7 +12,7 @@ GLViewer::GLViewer(QWidget *parent)
 
 GLViewer::~GLViewer()
 {
-
+	
 }
 
 void GLViewer::initializeGL()
@@ -28,7 +28,8 @@ void GLViewer::initializeGL()
 
 void GLViewer::paintGL()
 {
-
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 }
 
 void GLViewer::resizeGL( int w, int h )
@@ -44,6 +45,7 @@ void GLViewer::resizeGL( int w, int h )
 	glViewport(0, 0, (GLsizei) w, (GLsizei) h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	
 
 	gluPerspective(60.0, (GLfloat) w/(GLfloat) h, 1, 200.0);
 	glMatrixMode(GL_MODELVIEW);
