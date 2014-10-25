@@ -1,6 +1,6 @@
 #include "ImageTransform.h"
 #include <algorithm>
-
+#include <iostream>
 ImageTransform::ImageTransform( QString filePath )
 {
 	this->srcImage.load(filePath);
@@ -90,7 +90,17 @@ void ImageTransform::setTriangleTransPoint( std::vector<Wml::Vector2f>& s, std::
 	}
 	dstImage.offset[0] = minX;
 	dstImage.offset[1] = minY;
-	dstImage.img = new QImage(maxX - minX, maxY - minY, srcImage.format());
+	dstImage.img = new QImage(maxX - minX + 1, maxY - minY + 1, srcImage.format());
+	std::cout << "src:" << std::endl;
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << src[i][0] << " " << src[i][1] << std::endl;
+	}
+	std::cout << "dst:" << std::endl;
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << dst[i][0] << " " << dst[i][1] << std::endl; 
+	}
 }
 
 bool ImageTransform::comparePoint( const Wml::Vector2f& a, const Wml::Vector2f& b )
@@ -178,36 +188,43 @@ void ImageTransform::drawLine( int x0, int x1, int y, Wml::Matrix3f& transMat )
 		Wml::Vector3i v0((int)src[0], (int)src[1], 1); 
 		Wml::Vector3i v1((int)src[0]+1, (int)src[1], 1);
 		Wml::Vector3i v2((int)src[0], (int)src[1]+1, 1);
-		Wml::Vector3i v3((int)src[0]+1, (int)src[1]+1, 1);
-		for (int i = 0; i < 4; i++)
+		Wml::Vector3i v3((int)src[0]+1, (int)src[1]+1, 1);\
+		int numChannels;
+		if (srcImage.format() == QImage::Format_RGB32)
+		{
+			numChannels = 4;
+		}
+		else
+			numChannels = 3;
+		for (int i = 0; i < numChannels; i++)
 		{
 			unsigned char outData;
-			interPolation(v0, v1, v2, v3, src, i, outData);
-			dstImageData[((int)src[1]-dstImage.offset[1])*widthStep+((int)src[0]-dstImage.offset[0])*4+i] = outData;
+			interPolation(v0, v1, v2, v3, src, numChannels, i, outData);
+			dstImageData[((int)dst[1]-dstImage.offset[1])*widthStep+((int)dst[0]-dstImage.offset[0])*4+i] = outData;
 		}
 	}
 }
 
 void ImageTransform::interPolation( Wml::Vector3i v0, Wml::Vector3i v1, Wml::Vector3i v2, 
-									Wml::Vector3i v3, Wml::Vector3f outPos, int channel, unsigned char& outData )
+									Wml::Vector3i v3, Wml::Vector3f outPos, int numChannels, int channel, unsigned char& outData )
 {
 	unsigned char* imgData = srcImage.bits();
 	int widthStep = srcImage.bytesPerLine();
-	int v0Data = (int)getData(v0,channel);
-	int v1Data = (int)getData(v1,channel);
-	int v2Data = (int)getData(v2,channel);
-	int v3Data = (int)getData(v3,channel);
+	int v0Data = (int)getData(v0,numChannels, channel);
+	int v1Data = (int)getData(v1,numChannels, channel);
+	int v2Data = (int)getData(v2,numChannels, channel);
+	int v3Data = (int)getData(v3,numChannels, channel);
 	int tmp1 = (v1Data-v0Data) * (float)(v1[0]-v0[0]) / (outPos[0]-(float)v0[0]);
 	int tmp2 = (v3Data-v2Data) * (float)(v3[0]-v2[0]) / (outPos[0]-(float)v2[0]);
 	int result = (tmp2-tmp1) * (float)(v2[1]-v0[1]) / (outPos[1]-v0[1]);
 	outData = (unsigned char)result;
 }
 
-unsigned char ImageTransform::getData( Wml::Vector3i pos, int channel )
+unsigned char ImageTransform::getData( Wml::Vector3i pos,int Numchannel, int channel )
 {
 	unsigned char* imgData = srcImage.bits();
 	int widthStep = srcImage.bytesPerLine();
-	return imgData[pos[1]*widthStep+pos[0]*4+channel];
+	return imgData[pos[1]*widthStep+pos[0]*Numchannel+channel];
 }
 
 void ImageTransform::sortPoint( std::vector<Wml::Vector2f>& dstCopy )
@@ -261,6 +278,33 @@ void ImageTransform::testCopyToDstImg()
 			maxY = src[i][1];
 		}
 	}
+
+	dstImage.offset[0] = minX;
+	dstImage.offset[1] = minY;
+	dstImage.img = new QImage(maxX - minX + 1, maxY - minY + 1, srcImage.format());
+	unsigned char* srcData = srcImage.bits();
+	std::cout << srcImage.width() << " " << srcImage.height() << std::endl;
+	int srcWidthStep = srcImage.bytesPerLine();
+	unsigned char* dstData = dstImage.img->bits();
+	int dstWidthStep = dstImage.img->bytesPerLine();
+	int channels;
+	if (srcImage.format() == QImage::Format_RGB32)
+	{
+		channels = 4;
+	}
+	else
+		channels = 3;
+	for (int y = 0; y < dstImage.img->height(); y++)
+	{
+		for (int x = 0; x < dstImage.img->width(); x++)
+		{
+			for (int i = 0; i < channels; i++)
+			{
+				dstData[y*dstWidthStep+x*channels+i] = srcData[(dstImage.offset[1]+y)*srcWidthStep+(dstImage.offset[0]+x)*channels+i];
+			}
+		}
+	}
+
 }
 
 

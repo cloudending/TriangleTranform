@@ -38,8 +38,8 @@ private:
 	void otherTriTrans(std::vector<Wml::Vector2f>& dstSort, Wml::Matrix3f& transMat);
 	void drawLine(int x0, int x1, int y, Wml::Matrix3f& transMat);
 	void interPolation(Wml::Vector3i v0, Wml::Vector3i v1, Wml::Vector3i v2, 
-		Wml::Vector3i v3, Wml::Vector3f outPos, int channel, unsigned char& outData);
-	unsigned char getData(Wml::Vector3i pos, int channel);
+		Wml::Vector3i v3, Wml::Vector3f outPos, int numChannels, int channel, unsigned char& outData);
+	unsigned char getData(Wml::Vector3i pos, int Numchannel, int channel);
 	void sortPoint(std::vector<Wml::Vector2f>& dstCopy);
 };
 

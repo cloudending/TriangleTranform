@@ -18,7 +18,15 @@ void PaintArea::paintEvent( QPaintEvent * p )
 {
 	if (isLoad)
 	{
-		float ratio = (float)this->width() / (float)img.width();
+		float ratio = 1;
+		if (this->width() < img.width())
+		{
+			ratio = (float)this->width() / (float)img.width();
+			scaledImg = img.scaled(QSize((int)(img.width()*ratio), (int)(img.height()*ratio)));
+		}
+		else
+			scaledImg = img.copy();
+		std::cout << scaledImg.width() << " " << scaledImg.height() << std::endl;
 		QPixmap temp = QPixmap::fromImage(scaledImg.copy());
 		QPainter painter(&temp);
 		QPen pen;
@@ -53,16 +61,6 @@ void PaintArea::mouseMoveEvent( QMouseEvent* e )
 void PaintArea::loadImage( QString filePath )
 {
 	img.load(filePath);
-	std::cout << this->width() << std::endl;
-	if (img.width() > this->width())
-	{
-		float ratio = (float)this->width() / (float)img.width();
-		scaledImg = img.scaled(QSize((int)img.width()*ratio, (int)img.height()*ratio));
-	}
-	else
-		scaledImg = img.copy();
-
-
 	imgHeigth = img.height();
 	imgWidth = img.width();
 	this->filePath = filePath;
