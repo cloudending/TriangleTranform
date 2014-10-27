@@ -23,7 +23,13 @@ void ImageTransform::triImageTransform()
 							   1,               1,               1);
 	
 	Wml::Matrix3f transMat = homoCoordDst*homoCoordSrc.Inverse();
-	
+	std::cout << "src:" << std::endl;
+	showMatrix3(homoCoordSrc);
+	std::cout << "dst:" << std::endl;
+	showMatrix3(homoCoordDst);
+	std::cout << "transMat:" << std::endl;
+	showMatrix3(transMat);
+
 	std::vector<Wml::Vector2f> dstCopy = dst;
 
 	std::sort(dstCopy.begin(), dstCopy.end(), comparePoint);
@@ -115,13 +121,13 @@ void ImageTransform::flatTopTriTrans(std::vector<Wml::Vector2f>& dstSort, Wml::M
 	float dxdyl = (dstSort[0][0] - dstSort[2][0]) / dy;
 	float dxdyr = (dstSort[1][0] - dstSort[2][0]) / dy;
 	float x0,x1;
-	x0 = x1 = dstSort[2][1];
-	for (int y = (int)dstSort[2][1]; y <= dstSort[0][1]; y++)
+	x0 = x1 = (int)dstSort[2][0];
+	for (int y = (int)dstSort[2][1]; y < dstSort[0][1]; y++)
 	{
 		drawLine((int)x0, (int)x1, y, transMat);
 		dy = (y + 1) - dstSort[2][1];
-		x0 = dstSort[0][0] + dy * dxdyl;
-		x1 = dstSort[0][0] + dy * dxdyr;
+		x0 = dstSort[2][0] + dy * dxdyl;
+		x1 = dstSort[2][0] + dy * dxdyr;
 	}
 }
 
@@ -145,7 +151,7 @@ void ImageTransform::flatButtomTriTrans(std::vector<Wml::Vector2f>& dstSort, Wml
 
 void ImageTransform::otherTriTrans(std::vector<Wml::Vector2f>& dstSort, Wml::Matrix3f& transMat)
 {
-	float dxdy =   (dstSort[0][0] - dstSort[1][1]) / (dstSort[0][1] - dstSort[1][1]);
+	float dxdy =   (dstSort[0][0] - dstSort[2][0]) / (dstSort[0][1] - dstSort[2][1]);
 	float x = dstSort[0][0] + (dstSort[1][1] - dstSort[0][1]) * dxdy;
 	std::vector<Wml::Vector2f> flatButtomPoint;
 	std::vector<Wml::Vector2f> flatTopPoint;
@@ -178,29 +184,35 @@ void ImageTransform::otherTriTrans(std::vector<Wml::Vector2f>& dstSort, Wml::Mat
 
 void ImageTransform::drawLine( int x0, int x1, int y, Wml::Matrix3f& transMat )
 {
-	
+	int dstImgHeight = dstImage.img->height();
+	int dstImgWidth = dstImage.img->width();	
+	int numChannels;
+	if (srcImage.format() == QImage::Format_RGB32)
+	{
+		numChannels = 4;
+	}
+	else
+		numChannels = 3;
 	for (int x = x0; x <= x1; x++)
 	{
-		Wml::Vector3f dst(x, y, 1);
-		Wml::Vector3f src = transMat.Inverse()*dst;
+		Wml::Vector3f dstPoint(x, y, 1);
+		Wml::Vector3f srcPoint = transMat.Inverse()*dstPoint;
+		srcPoint[1] = srcImage.height() - srcPoint[1]; 
 		unsigned char* dstImageData = dstImage.img->bits();
 		int widthStep = dstImage.img->bytesPerLine();
-		Wml::Vector3i v0((int)src[0], (int)src[1], 1); 
-		Wml::Vector3i v1((int)src[0]+1, (int)src[1], 1);
-		Wml::Vector3i v2((int)src[0], (int)src[1]+1, 1);
-		Wml::Vector3i v3((int)src[0]+1, (int)src[1]+1, 1);\
-		int numChannels;
-		if (srcImage.format() == QImage::Format_RGB32)
-		{
-			numChannels = 4;
-		}
-		else
-			numChannels = 3;
+		Wml::Vector3i v0((int)srcPoint[0], (int)srcPoint[1], 1); 
+		Wml::Vector3i v1((int)srcPoint[0]+1, (int)srcPoint[1], 1);
+		Wml::Vector3i v2((int)srcPoint[0], (int)srcPoint[1]+1, 1);
+		Wml::Vector3i v3((int)srcPoint[0]+1, (int)srcPoint[1]+1, 1);
 		for (int i = 0; i < numChannels; i++)
 		{
 			unsigned char outData;
-			interPolation(v0, v1, v2, v3, src, numChannels, i, outData);
-			dstImageData[((int)dst[1]-dstImage.offset[1])*widthStep+((int)dst[0]-dstImage.offset[0])*4+i] = outData;
+			interPolation(v0, v1, v2, v3, srcPoint, numChannels, i, outData);
+			int yy = dstImgHeight - 1 -((int)dstPoint[1]-dstImage.offset[1]);
+			int xx = (int)dstPoint[0]-dstImage.offset[0];
+			//std::cout << "yy" << yy << " " << dstImgHeight << std::endl;
+			assert(yy<dstImgHeight);
+			dstImageData[(yy)*widthStep+(xx)*numChannels+i] = outData;
 		}
 	}
 }
@@ -214,9 +226,9 @@ void ImageTransform::interPolation( Wml::Vector3i v0, Wml::Vector3i v1, Wml::Vec
 	int v1Data = (int)getData(v1,numChannels, channel);
 	int v2Data = (int)getData(v2,numChannels, channel);
 	int v3Data = (int)getData(v3,numChannels, channel);
-	int tmp1 = (v1Data-v0Data) * (float)(v1[0]-v0[0]) / (outPos[0]-(float)v0[0]);
-	int tmp2 = (v3Data-v2Data) * (float)(v3[0]-v2[0]) / (outPos[0]-(float)v2[0]);
-	int result = (tmp2-tmp1) * (float)(v2[1]-v0[1]) / (outPos[1]-v0[1]);
+	int tmp1 = (v1Data-v0Data) * (outPos[0]-v0[0]) + v0Data;
+	int tmp2 = (v3Data-v2Data) * (outPos[0]-v2[0]) + v2Data;
+	int result = (tmp2-tmp1) * (outPos[1]-v0[1]) + tmp1; 
 	outData = (unsigned char)result;
 }
 
@@ -305,6 +317,18 @@ void ImageTransform::testCopyToDstImg()
 		}
 	}
 
+}
+
+void ImageTransform::showMatrix3( Wml::Matrix3f m )
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			std::cout << m[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
 
 

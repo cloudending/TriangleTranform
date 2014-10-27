@@ -8,7 +8,7 @@ TriangleTransform::TriangleTransform(QWidget *parent)
 {
 	ui.setupUi(this);
 	//this->ui.mainLayout->addWidget(GLViewer::getInstance());
-	setWindowState(Qt::WindowMaximized);
+	//setWindowState(Qt::WindowMaximized);
 	QObject::connect(ui.actionOpenImage, SIGNAL(triggered()), this, SLOT(onActionOpenImage()));
 	QObject::connect(ui.actionTransform, SIGNAL(triggered()), this, SLOT(onActionTransform()));
 	this->srcImgArea = new PaintArea(this);
@@ -30,8 +30,8 @@ void TriangleTransform::onActionOpenImage()
 		this->srcImgArea->loadImage(filePath);
 		std::vector<Wml::Vector3f> triPoint;
 		triPoint.push_back(Wml::Vector3f(this->srcImgArea->imgWidth*0.3, this->srcImgArea->imgHeigth*0.1, 1.0));
-		triPoint.push_back(Wml::Vector3f(this->srcImgArea->imgWidth*0.6, this->srcImgArea->imgHeigth*0.3, 1.0));
 		triPoint.push_back(Wml::Vector3f(this->srcImgArea->imgWidth*0.2, this->srcImgArea->imgHeigth*0.5, 1.0));
+		triPoint.push_back(Wml::Vector3f(this->srcImgArea->imgWidth*0.6, this->srcImgArea->imgHeigth*0.3, 1.0));
 		this->srcImgArea->setTriPoint(triPoint);
 		this->srcImgArea->update();
 	}
@@ -56,13 +56,15 @@ void TriangleTransform::onActionTransform()
 		int w = this->srcImgArea->imgWidth;
 
 		dst.push_back(Wml::Vector2f(w*0.5, h*0.2));
-		
 		dst.push_back(Wml::Vector2f(w*0.1, h*0.5));
-		
 		dst.push_back(Wml::Vector2f(w*0.7, h*0.7));
-
+		for (int i = 0; i < src.size(); i++)
+		{
+			src[i][1] = h-1 - src[i][1];
+			dst[i][1] = h-1 - dst[i][1];
+		}
 		imgTrans.setTriangleTransPoint(src, dst);
-
+		
 		imgTrans.doTransform();
 		//imgTrans.testCopyToDstImg();
 		this->dstImgArea->loadFromBoxPartImage(imgTrans.getBoxPartImage());

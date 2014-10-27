@@ -11,6 +11,7 @@ enum TRANSFORMTYPE
 typedef struct boxPartImage
 {
 	Wml::Vector3i offset;
+
 	QImage* img;
 }BoxPartImage;
 
@@ -31,6 +32,7 @@ private:
 	std::vector<Wml::Vector2f> src;
 	std::vector<Wml::Vector2f> dst;
 	QImage srcImage;
+
 	BoxPartImage dstImage;
 	void triImageTransform();
 	void flatTopTriTrans(std::vector<Wml::Vector2f>& dstSort, Wml::Matrix3f& transMat);
@@ -41,5 +43,6 @@ private:
 		Wml::Vector3i v3, Wml::Vector3f outPos, int numChannels, int channel, unsigned char& outData);
 	unsigned char getData(Wml::Vector3i pos, int Numchannel, int channel);
 	void sortPoint(std::vector<Wml::Vector2f>& dstCopy);
+	void showMatrix3(Wml::Matrix3f m);
 };
 
